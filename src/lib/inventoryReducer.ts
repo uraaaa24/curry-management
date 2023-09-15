@@ -1,3 +1,5 @@
+import { useReducer } from 'react'
+
 type State = {
   curryRice: number // カレーライスの在庫数
   porkCutlet: number // とんかつの在庫数
@@ -52,3 +54,18 @@ const reducer = (state: State, action: Action) => {
 
   return next
 }
+
+const useInventoryReducer = () => {
+  const [state, dispatch] = useReducer(reducer, {
+    curryRice: 0,
+    porkCutlet: 0,
+    cheese: 0,
+    soldOutCurryRice: true,
+    soldOutPorkCutletCurry: true,
+    soldOutCheeseCurry: true
+  })
+
+  return { state, dispatch }
+}
+
+export default useInventoryReducer
